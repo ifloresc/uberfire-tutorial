@@ -1,6 +1,7 @@
 package com.zweicom.uftutorial.client;
 
 import javax.enterprise.context.Dependent;
+import javax.enterprise.event.Observes;
 
 import org.uberfire.client.annotations.WorkbenchPartTitle;
 import org.uberfire.client.annotations.WorkbenchPartView;
@@ -8,6 +9,7 @@ import org.uberfire.client.annotations.WorkbenchScreen;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
+import com.zweicom.uftutorial.shared.Mood;
 
 @Dependent
 @WorkbenchScreen(identifier = "com.zweicom.uftutorial.client.HelloWorldScreen")
@@ -26,4 +28,9 @@ public class HelloWorldScreen {
 	public IsWidget getView() {
 		return label;
 	}
+
+	public void onMoodChange(@Observes Mood mood) {
+		label.setText("I understand you are feeling " + mood.getText());
+	}
+
 }
