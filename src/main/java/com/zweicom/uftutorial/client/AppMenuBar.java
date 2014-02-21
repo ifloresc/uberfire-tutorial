@@ -36,13 +36,26 @@ public class AppMenuBar extends Composite implements Header {
 
 	@PostConstruct
 	private void initMenus() {
-		Menus menus = MenuFactory.newTopLevelMenu("Screens").menus()
+		Menus menus = MenuFactory
+				.newTopLevelMenu("Screens")
+				.menus()
 				.menu("Hello Screen")
 				.respondsWith(makeGoToPlaceCommand(HelloWorldScreen.class))
-				.endMenu().menu("Mood Screen")
-				.respondsWith(makeGoToPlaceCommand(MoodScreen.class)).endMenu()
-				.endMenus().endMenu().newTopLevelMenu("Other").menus()
-				.menu("Alert Box").respondsWith(new Command() {
+				.endMenu()
+				.menu("Mood Screen")
+				.respondsWith(makeGoToPlaceCommand(MoodScreen.class))
+				.endMenu()
+				.endMenus()
+				.endMenu()
+				.newTopLevelMenu("Perspectives")
+				.menus()
+				.menu("Home Perspective")
+				.respondsWith(makeGoToPlaceCommand(HomePerspective.class))
+				.endMenu()
+				.menu("Horizontal Perspective")
+				.respondsWith(makeGoToPlaceCommand(HorizontalPerspective.class))
+				.endMenu().endMenus().endMenu().newTopLevelMenu("Other")
+				.menus().menu("Alert Box").respondsWith(new Command() {
 					@Override
 					public void execute() {
 						Window.alert("Hi. I'm an Alert Box.");
